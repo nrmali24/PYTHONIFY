@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Grade Calculator</title>
+</head>
+<body>
+    <h1>Grade Calculator</h1>
+    <input type="text" id="grades" placeholder="Enter grades separated by commas">
+    <button onclick="calculateAverage()">Calculate Average</button>
+    <h2 id="result"></h2>
+
+    <script>
+        async function calculateAverage() {
+            const gradesInput = document.getElementById('grades').value;
+            const grades = gradesInput.split(',').map(Number);
+            const response = await fetch('/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ grades })
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = `Average: ${data.average.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
