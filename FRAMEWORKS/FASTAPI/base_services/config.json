@@ -1,0 +1,13 @@
+{
+
+"credentials":
+{   
+    "server":"mysql",
+    "username":"",
+    "password":"",
+    "database":"fastapi",
+    "server_host":"localhost",
+    "port":3306      
+}
+
+}
