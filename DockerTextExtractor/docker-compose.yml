@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+
+  tika:
+    image: apache/tika:latest
+    ports:
+      - "9998:9998"
+
+  extractor:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - tika
