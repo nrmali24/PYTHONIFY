@@ -1,0 +1,17 @@
+services:
+  pdf-converter:
+    build: .
+    container_name: doc-to-pdf-service
+    ports:
+      - "8000:8000"
+    volumes:
+      # Updated to match the TEMP_DIR in the lightweight app.py
+      - ./temp_output:/tmp/conv
+    environment:
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        limits:
+          # 1G is usually plenty for the lightweight writer-only install
+          memory: 1G 
+    restart: unless-stopped

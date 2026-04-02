@@ -1,7 +1,7 @@
 import requests
 
 URL = "http://localhost:8000/extract"
-FILE_PATH = "sample.docx"
+FILE_PATH = r"F:\Olds\nlpUpdater\Amandeep Pattran.pdf"
 
 
 def test_extractor():

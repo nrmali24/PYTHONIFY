@@ -1,0 +1,17 @@
+services:
+  pdf-converter:
+    # Changed from 'build: .' to use your existing image
+    image: libredocker-pdf-converter:latest
+    container_name: doc-to-pdf-service
+    ports:
+      - "8000:8000"
+    volumes:
+      # Keep this to sync the container's temp files to your host Desktop/Folder
+      - ./temp_output:/tmp/conv
+    environment:
+      - PYTHONUNBUFFERED=1
+    deploy:
+      resources:
+        limits:
+          memory: 1G 
+    restart: unless-stopped
